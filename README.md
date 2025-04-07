@@ -50,8 +50,8 @@ SDG 12 is a gateway to solving major global issues like climate change, food was
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/shift12.git
-cd shift12
+git clone https://github.com/Saumya0301/root.git
+cd root
 
 # Frontend
 cd client
