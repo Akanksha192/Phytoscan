@@ -45,20 +45,3 @@ SDG 12 is a gateway to solving major global issues like climate change, food was
 | Database    | Firebase / MongoDB (optional) |
 
 ---
-
-## 🚀 Getting Started (Local Dev)
-
-```bash
-# Clone the repo
-git clone https://github.com/Saumya0301/root.git
-cd root
-
-# Frontend
-cd client
-npm install
-npm start
-
-# Backend (if using Node.js)
-cd ../server
-npm install
-node server.js
