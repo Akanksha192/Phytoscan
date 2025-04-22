@@ -31,22 +31,28 @@ body {
 }
 
 .hero {
-  background-color: #1f4f2f;
+  background-image: url('../images/bg.png');
   background-size: cover;
   background-position: center;
   color: white;
   text-align: center;
   padding: 4em 2em;
+  position: relative;
 }
 
 .hero h1 {
-  font-size: 3em;
+  font-size: 4em;
   font-weight: bold;
 }
 
 .tagline {
+  background-color: #042D04;
+  color: white;
+  padding: 1em;
+  border-radius: 8px;
+  max-width: 300px;
   margin-top: 1em;
-  font-size: 1.2em;
+  font-size: 1em;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
