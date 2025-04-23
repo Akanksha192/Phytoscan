@@ -48,3 +48,262 @@
   
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Education Hub | G-Root</title>
+  <style>
+    /* Colors inspired by your Tailwind config and CSS */
+    :root {
+      --g-green-100: #e8f5e9;
+      --g-green-800: #1b5e20;
+      --g-green-900: #1b5e20;
+      --g-green-700: #388e3c;
+      --g-green-600: #43a047;
+      --g-green-500: #4caf50;
+      --g-green-200: #c8e6c9;
+      --g-green-50: #f1f8ed;
+      --gray-600: #4b5563;
+      --gray-500: #6b7280;
+      --gray-300: #d1d5db;
+      --gray-700: #374151;
+      --gray-900: #111827;
+      --white: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.1);
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      margin: 0;
+      background-color: #f9fafb;
+      color: var(--gray-900);
+      line-height: 1.5;
+    }
+
+    h1, h2 {
+      margin: 0 0 0.5rem 0;
+    }
+
+    .page-header {
+      background-color: var(--g-green-800);
+      color: var(--white);
+      text-align: center;
+      padding: 3rem 1rem 4rem 1rem;
+      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .page-header h1 {
+      font-size: 2.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+
+    .page-header p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: -3rem auto 3rem auto;
+      padding: 0 1rem 3rem 1rem;
+    }
+
+    section {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem 2rem 3rem;
+      box-shadow: 0 2px 6px var(--shadow);
+    }
+
+    section h2 {
+      color: var(--g-green-900);
+      font-size: 2rem;
+      margin-bottom: 0.25rem;
+      font-weight: 700;
+    }
+
+    section p {
+      margin: 0 0 1.5rem;
+      color: var(--gray-600);
+      font-size: 1rem;
+      max-width: 700px;
+    }
+
+    /* Resource grid and cards */
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .resource-card {
+      background: var(--g-green-50);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px var(--shadow);
+      padding: 1.5rem 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .resource-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .resource-header .category {
+      background-color: var(--g-green-200);
+      color: var(--g-green-800);
+      padding: 0.2rem 0.5rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+    }
+
+    .resource-header .time {
+      color: var(--gray-500);
+    }
+
+    .resource-card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.25rem;
+      color: var(--g-green-900);
+      font-weight: 700;
+      flex-grow: 0;
+    }
+
+    .resource-card p {
+      flex-grow: 1;
+      margin-bottom: 1rem;
+      color: var(--gray-700);
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .resource-card button {
+      align-self: flex-start;
+      border: 1.5px solid var(--g-green-500);
+      background-color: transparent;
+      color: var(--g-green-700);
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .resource-card button:hover {
+      background-color: var(--g-green-700);
+      color: var(--white);
+      border-color: var(--g-green-700);
+    }
+
+    @media screen and (max-width: 640px) {
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      .page-header p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <h1>Education Hub</h1>
+    <p>Explore our resources to learn more about sustainability and the SDGs.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Featured Resources</h2>
+      <p>Handpicked educational content to help you understand sustainability better.</p>
+      <div class="resource-grid" id="resourceGrid">
+        <!-- Dynamic cards inserted here -->
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const resources = [
+        {
+          title: "Understanding the SDGs",
+          description: "A comprehensive guide to the 17 Sustainable Development Goals",
+          category: "Guide",
+          time: "10 min read"
+        },
+        {
+          title: "Climate Action Basics",
+          description: "Learn the fundamentals of climate change and what you can do",
+          category: "Tutorial",
+          time: "15 min read"
+        },
+        {
+          title: "Sustainable Business Practices",
+          description: "How businesses can contribute to a sustainable future",
+          category: "Guide",
+          time: "12 min read"
+        },
+        {
+          title: "Sustainable Development Goal 17",
+          description: "Deep dive into partnerships for the goals",
+          category: "Deep Dive",
+          time: "20 min read"
+        },
+        {
+          title: "Carbon Footprint Calculation",
+          description: "Learn how to measure and reduce your carbon footprint",
+          category: "Tutorial",
+          time: "8 min read"
+        },
+        {
+          title: "Water Conservation Techniques",
+          description: "Simple ways to save water at home and work",
+          category: "Guide",
+          time: "5 min read"
+        }
+      ];
+
+      const container = document.getElementById('resourceGrid');
+      
+      resources.forEach(resource => {
+        const card = document.createElement('div');
+        card.className = 'resource-card';
+        card.innerHTML = `
+          <div class="resource-header">
+            <span class="category">${resource.category}</span>
+            <span class="time">${resource.time}</span>
+          </div>
+          <h3>${resource.title}</h3>
+          <p>${resource.description}</p>
+          <button type="button" aria-label="Read more about ${resource.title}">Read More</button>
+        `;
+        container.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>

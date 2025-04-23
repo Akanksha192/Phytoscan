@@ -1,21 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up | G-Root</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../static/styles/styles.css" />
+  <style>
+    body {
+      background-color: #f4f6f8;
+    }
+    .signup-container {
+      max-width: 450px;
+      margin: 80px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .signup-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+    .btn-signup {
+      width: 100%;
+      background-color: #3b7c4d;
+      border: none;
+    }
+    .btn-signup:hover {
+      background-color: #3b7c4d;
+    }
+  </style>
 </head>
 <body>
-    <h2>Sign Up</h2>
-
-    <form method="POST">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-
-        <button type="submit">Sign Up</button>
+  <div class="signup-container">
+    <h2>Create Your Account</h2>
+    <form id="signupForm">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" class="form-control" id="name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Create Password</label>
+        <input type="password" class="form-control" id="password" required />
+      </div>
+      <div class="form-group">
+        <label for="retype-password">Retype Password</label>
+        <input type="password" class="form-control" id="retype-password" required />
+      </div>
+      <button type="submit" class="btn btn-signup">Sign Up</button>
     </form>
+    <p class="text-center mt-3">Already have an account? <a href="login.html">Log in</a></p>
+  </div>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const retype = document.getElementById("retype-password").value;
+
+      if (!name || !email || !password || !retype) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      if (password !== retype) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      alert("Welcome, " + name + "! Your account has been created.");
+      window.location.href = "login.html";
+    });
+  </script>
 </body>
 </html>

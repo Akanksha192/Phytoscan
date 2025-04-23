@@ -1,22 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | G-Root</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../static/styles/styles.css" />
+  <style>
+    body {
+      background-color: #f4f6f8;
+    }
+    .login-container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+    .btn-login {
+      width: 100%;
+      background-color: #3b7c4d;
+      border: none;
+    }
+    .btn-login:hover {
+      background-color: #3b7c4d;
+    }
+  </style>
 </head>
 <body>
-    <h2>Login</h2>
-    <form method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-
-        <button type="submit">Login</button>
+  <div class="login-container">
+    <h2>Login to G-Root</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username">Email or Username</label>
+        <input type="text" class="form-control" id="username" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" required />
+      </div>
+      <button type="submit" class="btn btn-login btn-success">Login</button>
     </form>
+    <p class="text-center mt-3">Don’t have an account? <a href="signup.html">Sign up</a></p>
+  </div>
 
-    <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === "" || password === "") {
+        alert("Please fill in all fields.");
+      } else {
+        alert("Logged in as " + username);
+        window.location.href = "index.html";
+      }
+    });
+  </script>
 </body>
 </html>
