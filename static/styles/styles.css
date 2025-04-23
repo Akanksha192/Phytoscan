@@ -10,7 +10,7 @@ body {
   background-color: #fff;
 }
 
-.navbar {
+.custom-navbar {
   background-color: #144d29;
   color: white;
   padding: 1em 2em;
@@ -19,17 +19,19 @@ body {
   align-items: center;
 }
 
-.navbar ul {
+.custom-navbar ul {
   display: flex;
   gap: 1em;
   list-style: none;
 }
 
-.navbar a {
+.custom-navbar a {
   color: white;
   text-decoration: none;
 }
-
+.custom-navbar .nav-link {
+  color: white !important;
+}
 .hero {
   background-image: url('../images/bg.png');
   background-size: cover;
@@ -60,7 +62,7 @@ body {
 
 .why {
   padding: 3em 2em;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   text-align: center;
 }
 
