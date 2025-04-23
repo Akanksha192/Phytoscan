@@ -36,14 +36,14 @@
 <body>
   <div class="login-container">
     <h2>Login to G-Root</h2>
-    <form id="loginForm">
+    <form method="POST" action="/login">
       <div class="form-group">
         <label for="username">Email or Username</label>
-        <input type="text" class="form-control" id="username" required />
+        <input type="text" class="form-control" name="username" required />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" required />
+        <input type="password" class="form-control" name="password" required />
       </div>
       <button type="submit" class="btn btn-login btn-success">Login</button>
     </form>
@@ -51,18 +51,22 @@
   </div>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+    // Replace with your project info
+const SUPABASE_URL = 'https://xdwnkhpjjfxxgttdcdre.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhkd25raHBqamZ4eGd0dGRjZHJlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU0MzA0MDksImV4cCI6MjA2MTAwNjQwOX0.oZfzn85lKvsSB5sf67tR2bG9UGq1Upzs91D2oHjonL4';
 
-      if (username === "" || password === "") {
-        alert("Please fill in all fields.");
-      } else {
-        alert("Logged in as " + username);
-        window.location.href = "index.html";
-      }
-    });
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function loginUser(email, password) {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (error) console.error('Login error:', error.message);
+  else console.log('Logged in:', data);
+}
+
   </script>
 </body>
 </html>

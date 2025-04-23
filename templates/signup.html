@@ -59,26 +59,19 @@
   </div>
 
   <script>
-    document.getElementById("signupForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-      const retype = document.getElementById("retype-password").value;
+    const SUPABASE_URL = 'https://xdwnkhpjjfxxgttdcdre.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhkd25raHBqamZ4eGd0dGRjZHJlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU0MzA0MDksImV4cCI6MjA2MTAwNjQwOX0.oZfzn85lKvsSB5sf67tR2bG9UGq1Upzs91D2oHjonL4';
 
-      if (!name || !email || !password || !retype) {
-        alert("Please fill out all fields.");
-        return;
-      }
+    async function signUpUser(email, password) {
+  const { data, error } = await supabase.auth.signUp({
+    email: email,
+    password: password
+  });
 
-      if (password !== retype) {
-        alert("Passwords do not match.");
-        return;
-      }
+  if (error) console.error('Signup error:', error.message);
+  else console.log('User signed up:', data);
+}
 
-      alert("Welcome, " + name + "! Your account has been created.");
-      window.location.href = "login.html";
-    });
   </script>
 </body>
 </html>
