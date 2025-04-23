@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Impact - G-Root</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles/impact.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
+        <div>G-Root</div>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="education.html">Education Hub</a></li>
+          <li class="nav-item"><a class="nav-link" href="action.html">Take Action</a></li>
+          <li class="nav-item"><a class="nav-link" href="impact.html">Track Impact</a></li>
+          <li class="nav-item"><a class="nav-link" href="rewards.html">Rewards</a></li>
+          <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+          <a href="login.html" class="btn btn-success">Login</a>
+        </ul>
+      </nav>
+
+    <div class="hero-section">
+        <h1>Track Your Impact</h1>
+        <p>Monitor your sustainability journey and see the difference you're making.</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Carbon Saved</h3>
+            <p class="value">45 kg</p>
+            <p class="change">+12% this month</p>
+        </div>
+        <div class="stat-card">
+            <h3>Water Conserved</h3>
+            <p class="value">320 liters</p>
+            <p class="change">+8% this month</p>
+        </div>
+        <div class="stat-card">
+            <h3>Waste Reduced</h3>
+            <p class="value">18 kg</p>
+            <p class="change">+15% this month</p>
+        </div>
+        <div class="stat-card">
+            <h3>Actions Completed</h3>
+            <p class="value">24</p>
+            <p class="change">+5 this week</p>
+        </div>
+    </div>
+
+    <div class="progress-section">
+        <h2>Monthly Goals Progress</h2>
+        <div>
+            <p>Carbon Reduction Goal: 100kg</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p>75% Complete</p>
+        </div>
+    </div>
+
+    <div class="activity-form">
+        <h2>Log Your Activity</h2>
+        <form id="activity-form">
+            <select class="form-input">
+                <option value="carbon">Carbon Reduction</option>
+                <option value="water">Water Conservation</option>
+                <option value="waste">Waste Reduction</option>
+            </select>
+            <input type="text" class="form-input" placeholder="Describe your activity..." required>
+            <button type="submit" class="submit-btn">Log Activity</button>
+        </form>
+    </div>
+</body>
+</html>

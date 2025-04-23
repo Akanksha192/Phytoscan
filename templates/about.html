@@ -19,33 +19,49 @@
       <li class="nav-item"><a class="nav-link" href="rewards.html">Rewards</a></li>
       <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
       <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
-      <li class="nav-item" id="login-logout-btn"><a class="nav-link" href="../templates/login.html">Login</a>
-      </li>
+      <a href="login.html" class="btn btn-success">Login</a>
     </ul>
   </nav>
   <section class="who-we-are">
-    <h2>Who are we?</h2>
-    <p>
-      We’re here to make doing good feel real, reachable, and personal. At G-Root, we believe tech should care – not just calculate. So we build with heart, guided by the SDGs, to spark change in the everyday. Because the future isn’t waiting – it’s shaped by the choices we make today. And yes, <strong>it starts with you.</strong>
-    </p>
+    <div class="who-container">
+      <div class="who-text" data-aos="fade-right">
+        <h2>Who are we</h2>
+        <p>
+          We’re here to make doing good feel real, reachable, and personal. At G-Root, we believe tech should care – not just calculate. So we build with heart, guided by the SDGs, to spark change in the everyday. Because the future isn’t waiting – it’s shaped by the choices we make today. And yes, <strong>it starts with you.</strong>
+        </p>
+      </div>
     <img src="../static/images/about (3).jpeg" alt="Illustration" class="section-image"/>
+    </div>
   </section>
 
   <section class="mission">
-    <h2>Our Mission</h2>
+    <div class="green-line"></div>
+    <h2 data-aos="fade-up" >Our Mission</h2>
     <div class="mission-block">
       <img src="../static/images/about (2).jpeg" alt="Recycling" class="section-image"/>
-      <div class="text-box green-box">
+      <div class="mission-block stretch-right" data-aos="fade-up">
+        <div class="text green-box right-stretch">
         <p>We want to see the world change — not just in headlines, but in hearts, homes, and everyday lives. Our mission is to give you a starting point, a spark, and a system that helps you turn hope into something real.</p>
       </div>
     </div>
+    <div class="mission-block stretch-left" data-aos="fade-up" data-aos-delay="200"></div>
     <div class="mission-block reverse">
-      <div class="text-box green-box">
-        <p>Every small action you take echoes further than you think. And as you show up, day by day, you’re not just part of the change. You are the change.</p>
+      <div data-aos="fade-up" class="text green-box left-stretch">
+        <p >Every small action you take echoes further than you think. And as you show up, day by day, you’re not just part of the change. You are the change.</p>
       </div>
       <img src="../static/images/about (1).jpeg" alt="Clean up" class="section-image"/>
     </div>
-  </section>
+</section>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    easing: 'ease-in-out',
+    once: true
+  });
+</script>
+
 </body>
 </html>
   
