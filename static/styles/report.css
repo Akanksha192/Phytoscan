@@ -1,0 +1,121 @@
+.report-section {
+    background-color: #fdf4eb;
+    padding: 20px;
+    max-width: 450px;
+    margin: 60px auto 0 auto;
+    margin: 0 auto;
+    border-radius: 20px;
+  }
+  
+  .report-title {
+    background-color: #6aa36f;
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 12px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .radio-group label {
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+  
+  .radio-group input[type="radio"] {
+    accent-color: #4b8861;
+    margin-right: 10px;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .location-upload {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .location-upload input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+  }
+  
+  .upload-icon img {
+    width: 30px;
+    cursor: pointer;
+  }
+  
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #6aa36f;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .submit-btn:hover {
+    background-color: #548b5e;
+  }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    background-color: #fff;
+  }
+  
+  .custom-navbar {
+    background-color: #144d29;
+    color: white;
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .custom-navbar ul {
+    display: flex;
+    gap: 1em;
+    list-style: none;
+  }
+  
+  .custom-navbar a {
+    color: white;
+    text-decoration: none;
+  }
+  .custom-navbar .nav-link {
+    color: white !important;
+  }
