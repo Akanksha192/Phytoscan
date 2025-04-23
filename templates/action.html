@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Take Action | G-Root</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../static/styles/action.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
+    <div>G-Root</div>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="education.html">Education Hub</a></li>
+      <li class="nav-item"><a class="nav-link" href="action.html">Take Action</a></li>
+      <li class="nav-item"><a class="nav-link" href="impact.html">Track Impact</a></li>
+      <li class="nav-item"><a class="nav-link" href="rewards.html">Rewards</a></li>
+      <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+      <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+      <li class="nav-item" id="login-logout-btn"><a class="nav-link" href="../templates/login.html">Login</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2 class="text-center mb-4">Take Action Today 🌱</h2>
+
+    <label>Select your cause:</label>
+    <select id="categorySelector" onchange="showAction()">
+      <option value="">-- Choose a cause --</option>
+  <option value="">-- Select an SDG --</option>
+  <option value="1">1. No Poverty</option>
+  <option value="2">2. Zero Hunger</option>
+  <option value="3">3. Good Health and Well-being</option>
+  <option value="4">4. Quality Education</option>
+  <option value="5">5. Gender Equality</option>
+  <option value="6">6. Clean Water and Sanitation</option>
+  <option value="7">7. Affordable and Clean Energy</option>
+  <option value="8">8. Decent Work and Economic Growth</option>
+  <option value="9">9. Industry, Innovation and Infrastructure</option>
+  <option value="10">10. Reduced Inequalities</option>
+  <option value="11">11. Sustainable Cities and Communities</option>
+  <option value="12">12. Responsible Consumption and Production</option>
+  <option value="13">13. Climate Action</option>
+  <option value="14">14. Life Below Water</option>
+  <option value="15">15. Life on Land</option>
+  <option value="16">16. Peace, Justice and Strong Institutions</option>
+  <option value="17">17. Partnerships for the Goals</option>
+
+    </select>
+
+    <div id="actionArea" class="action-box d-none">
+      <h4 id="actionTitle">Action Title</h4>
+      <p id="actionDescription">Description of the task.</p>
+      <button class="btn btn-action" onclick="completeAction()">Mark as Done ✔️</button>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    const actions = {
+      environment: {
+        title: "Carry a reusable bottle",
+        description: "Avoid plastic bottles by using your own refillable bottle today."
+      },
+      education: {
+        title: "Share a learning resource",
+        description: "Post or message someone a valuable learning video or book link."
+      },
+      hunger: {
+        title: "Donate a snack",
+        description: "Offer someone food or donate to a local food collection center."
+      },
+      health: {
+        title: "Stretch break challenge",
+        description: "Take 5 minutes for a deep stretch. Physical health = mental strength!"
+      }
+    };
+
+    function showAction() {
+      const selected = document.getElementById("categorySelector").value;
+      if (selected && actions[selected]) {
+        document.getElementById("actionTitle").textContent = actions[selected].title;
+        document.getElementById("actionDescription").textContent = actions[selected].description;
+        document.getElementById("actionArea").classList.remove("d-none");
+      } else {
+        document.getElementById("actionArea").classList.add("d-none");
+      }
+    }
+
+    function completeAction() {
+      alert("🌟 Great job! You're growing change.");
+      // Future: Save to DB or session
+    }
+  </script>
+</body>
+</html>
