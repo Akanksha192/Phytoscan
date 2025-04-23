@@ -204,7 +204,6 @@
       </div>
     </section>
   </main>
-
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const resources = [
@@ -212,42 +211,48 @@
           title: "Understanding the SDGs",
           description: "A comprehensive guide to the 17 Sustainable Development Goals",
           category: "Guide",
-          time: "10 min read"
+          time: "10 min read",
+          link: "https://www.undp.org/sustainable-development-goals"
         },
         {
           title: "Climate Action Basics",
           description: "Learn the fundamentals of climate change and what you can do",
           category: "Tutorial",
-          time: "15 min read"
+          time: "15 min read",
+          link: "https://climate.nasa.gov/"
         },
         {
           title: "Sustainable Business Practices",
           description: "How businesses can contribute to a sustainable future",
           category: "Guide",
-          time: "12 min read"
+          time: "12 min read",
+          link: "https://www.un.org/sustainabledevelopment/sustainable-consumption-production/"
         },
         {
           title: "Sustainable Development Goal 17",
           description: "Deep dive into partnerships for the goals",
           category: "Deep Dive",
-          time: "20 min read"
+          time: "20 min read",
+          link: "https://sdgs.un.org/goals/goal17"
         },
         {
           title: "Carbon Footprint Calculation",
           description: "Learn how to measure and reduce your carbon footprint",
           category: "Tutorial",
-          time: "8 min read"
+          time: "8 min read",
+          link: "https://www.carbonfootprint.com/calculator.aspx"
         },
         {
           title: "Water Conservation Techniques",
           description: "Simple ways to save water at home and work",
           category: "Guide",
-          time: "5 min read"
+          time: "5 min read",
+          link: "https://www.epa.gov/watersense/start-saving"
         }
       ];
-
+  
       const container = document.getElementById('resourceGrid');
-      
+  
       resources.forEach(resource => {
         const card = document.createElement('div');
         card.className = 'resource-card';
@@ -258,9 +263,28 @@
           </div>
           <h3>${resource.title}</h3>
           <p>${resource.description}</p>
-          <button type="button" aria-label="Read more about ${resource.title}">Read More</button>
+          <button 
+            type="button" 
+            class="read-more-btn"
+            data-link="${resource.link}" 
+            aria-label="Read more about ${resource.title}">
+            Read More
+          </button>
         `;
         container.appendChild(card);
+      });
+  
+      // Add event listeners to buttons to open their respective links
+      const buttons = document.querySelectorAll(".read-more-btn");
+      buttons.forEach(btn => {
+        btn.addEventListener("click", function () {
+          const url = this.getAttribute("data-link");
+          if (url) {
+            window.open(url, "_blank");
+          } else {
+            alert("Link not found!");
+          }
+        });
       });
     });
   </script>
