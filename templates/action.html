@@ -11,23 +11,20 @@
   <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
     <div>G-Root</div>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="education.html">Education Hub</a></li>
-      <li class="nav-item"><a class="nav-link" href="action.html">Take Action</a></li>
-      <li class="nav-item"><a class="nav-link" href="impact.html">Track Impact</a></li>
-      <li class="nav-item"><a class="nav-link" href="rewards.html">Rewards</a></li>
-      <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
-      <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
-      <a href="login.html" class="btn btn-success">Login</a>
-    </ul>
-      </li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('education') }}">Education Hub</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('action') }}">Take Action</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('impact') }}">Track Impact</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('rewards') }}">Rewards</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('report') }}">Report</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About us</a></li>
+      <a href="{{ url_for('login') }}" class="btn btn-success">Login</a>
     </ul>
   </nav>
   <header class="page-header">
     <h1>HELLO, SELECT YOUR CAUSE!</h1>
     <p>Act. Impact.</p>
   </header>
-  
 
     <div id="actionArea" class="action-box d-none">
       <h4 id="actionTitle">Action Title</h4>

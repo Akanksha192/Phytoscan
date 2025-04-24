@@ -1,77 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track Impact - G-Root</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/styles/impact.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Track Impact - G-Root</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/impact.css') }}" />
+  <style>
+    .stats-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      flex: 1 1 200px;
+      background: #e9f5ec;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .stat-card h3 { margin-bottom: 0.5rem; }
+    .stat-card .value { font-size: 1.5rem; font-weight: bold; }
+    .stat-card .change { font-size: 0.9rem; color: #4caf50; }
+    .activity-form {
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      padding: 1.5rem;
+      background: #f1f8f2;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+    }
+    .submit-btn {
+      margin-top: 1rem;
+    }
+    #resultMessage {
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
-        <div>G-Root</div>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="education.html">Education Hub</a></li>
-          <li class="nav-item"><a class="nav-link" href="action.html">Take Action</a></li>
-          <li class="nav-item"><a class="nav-link" href="impact.html">Track Impact</a></li>
-          <li class="nav-item"><a class="nav-link" href="rewards.html">Rewards</a></li>
-          <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
-          <a href="login.html" class="btn btn-success">Login</a>
-        </ul>
-      </nav>
+  <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
+    <div class="navbar-brand">G-Root</div>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('education') }}">Education Hub</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('action') }}">Take Action</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('impact') }}">Track Impact</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('rewards') }}">Rewards</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('report') }}">Report</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About us</a></li>
+      {% if session.username %}
+        <li class="nav-item"><a class="nav-link btn btn-outline-danger ml-2" href="{{ url_for('logout') }}">Logout</a></li>
+      {% else %}
+        <li class="nav-item"><a class="nav-link btn btn-success ml-2" href="{{ url_for('login') }}">Login</a></li>
+      {% endif %}
+    </ul>
+  </nav>
 
-    <div class="hero-section">
-        <h1>Track Your Impact</h1>
-        <p>Monitor your sustainability journey and see the difference you're making.</p>
+  <div class="container mt-4">
+    <div class="hero-section text-center mb-4">
+      {% if session.username %}
+        <h2>Welcome, {{ session.username }}!</h2>
+      {% else %}
+        <h2>Welcome to G-Root</h2>
+        <p><a href="{{ url_for('login') }}">Login</a> or <a href="{{ url_for('signup') }}">Sign Up</a> to start tracking your impact.</p>
+      {% endif %}
+      <h3>Track Your Impact</h3>
+      <p>Monitor your sustainability journey and see the difference you're making.</p>
     </div>
 
-    <div class="stats-grid">
-        <div class="stat-card">
-            <h3>Carbon Saved</h3>
-            <p class="value">45 kg</p>
-            <p class="change">+12% this month</p>
-        </div>
-        <div class="stat-card">
-            <h3>Water Conserved</h3>
-            <p class="value">320 liters</p>
-            <p class="change">+8% this month</p>
-        </div>
-        <div class="stat-card">
-            <h3>Waste Reduced</h3>
-            <p class="value">18 kg</p>
-            <p class="change">+15% this month</p>
-        </div>
-        <div class="stat-card">
-            <h3>Actions Completed</h3>
-            <p class="value">24</p>
-            <p class="change">+5 this week</p>
-        </div>
-    </div>
-
-    <div class="progress-section">
-        <h2>Monthly Goals Progress</h2>
-        <div>
-            <p>Carbon Reduction Goal: 100kg</p>
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
-            </div>
-            <p>75% Complete</p>
-        </div>
+    {% if session.username %}
+    <div class="stats-grid" id="impactStats">
+      <div class="stat-card">
+        <h3>Carbon Saved</h3>
+        <p class="value" id="carbonSaved">0 kg</p>
+      </div>
+      <div class="stat-card">
+        <h3>Water Conserved</h3>
+        <p class="value" id="waterConserved">0 liters</p>
+      </div>
+      <div class="stat-card">
+        <h3>Waste Reduced</h3>
+        <p class="value" id="wasteReduced">0 kg</p>
+      </div>
+      <div class="stat-card">
+        <h3>Actions Completed</h3>
+        <p class="value" id="actionsCompleted">0</p>
+      </div>
     </div>
 
     <div class="activity-form">
-        <h2>Log Your Activity</h2>
-        <form id="activity-form">
-            <select class="form-input">
-                <option value="carbon">Carbon Reduction</option>
-                <option value="water">Water Conservation</option>
-                <option value="waste">Waste Reduction</option>
-            </select>
-            <input type="text" class="form-input" placeholder="Describe your activity..." required>
-            <button type="submit" class="submit-btn">Log Activity</button>
-        </form>
+      <h2>Log Your Activity</h2>
+      <form id="activityForm">
+        <div class="form-group">
+          <label for="carbonInput">Carbon Saved (kg)</label>
+          <input type="number" min="0" step="0.01" class="form-control" id="carbonInput" name="carbon_saved" value="0" required>
+        </div>
+        <div class="form-group">
+          <label for="waterInput">Water Conserved (liters)</label>
+          <input type="number" min="0" step="0.01" class="form-control" id="waterInput" name="water_conserved" value="0" required>
+        </div>
+        <div class="form-group">
+          <label for="wasteInput">Waste Reduced (kg)</label>
+          <input type="number" min="0" step="0.01" class="form-control" id="wasteInput" name="waste_reduced" value="0" required>
+        </div>
+        <div class="form-group">
+          <label for="actionsInput">Actions Completed</label>
+          <input type="number" min="0" step="1" class="form-control" id="actionsInput" name="actions_completed" value="0" required>
+        </div>
+        <button type="submit" class="btn btn-primary submit-btn">Log Activity</button>
+        <div id="resultMessage"></div>
+      </form>
     </div>
+    {% else %}
+      <p class="text-center">Please log in to track and log your impact.</p>
+    {% endif %}
+  </div>
+
+  <script>
+    {% if session.username %}
+    async function fetchImpact() {
+      try {
+        const response = await fetch('/api/impact');
+        if (!response.ok) throw new Error('Failed to fetch impact data');
+        const data = await response.json();
+        updateImpactDisplay(data);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function updateImpactDisplay(impact) {
+      document.getElementById('carbonSaved').textContent = impact.carbon_saved.toFixed(2) + ' kg';
+      document.getElementById('waterConserved').textContent = impact.water_conserved.toFixed(2) + ' liters';
+      document.getElementById('wasteReduced').textContent = impact.waste_reduced.toFixed(2) + ' kg';
+      document.getElementById('actionsCompleted').textContent = impact.actions_completed;
+    }
+
+    const initialImpact = {
+      carbon_saved: {{ impact.carbon_saved | default(0, true) }},
+      water_conserved: {{ impact.water_conserved | default(0, true) }},
+      waste_reduced: {{ impact.waste_reduced | default(0, true) }},
+      actions_completed: {{ impact.actions_completed | default(0, true) }}
+    };
+    updateImpactDisplay(initialImpact);
+
+    document.getElementById('activityForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+
+      const resultMessage = document.getElementById('resultMessage');
+      resultMessage.textContent = '';
+      resultMessage.className = '';
+
+      try {
+        const response = await fetch('/impact/update', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          updateImpactDisplay(data.impact);
+          resultMessage.style.color = 'green';
+          resultMessage.textContent = 'Impact logged successfully!';
+          form.reset();
+        } else {
+          resultMessage.style.color = 'red';
+          resultMessage.textContent = data.error || 'Failed to log impact.';
+        }
+      } catch (error) {
+        console.error(error);
+        resultMessage.style.color = 'red';
+        resultMessage.textContent = 'Error occurred while logging impact.';
+      }
+    });
+    {% endif %}
+  </script>
 </body>
 </html>
