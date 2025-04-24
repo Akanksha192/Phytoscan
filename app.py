@@ -169,7 +169,6 @@ def create_impact_user(username):
 def update_impact_user(username, carbon_saved, water_conserved, waste_reduced, actions_completed):
     conn = get_db_connection()
     cursor = conn.cursor()
-    # Insert new record if does not exist, else update cumulative sums
     cursor.execute("SELECT id FROM impact_users WHERE username = %s", (username,))
     exists = cursor.fetchone()
     if not exists:
@@ -224,7 +223,6 @@ def impact_enhanced():
     username = session['username']
     impact = get_impact_for_user(username)
 
-    # Provide impact stats or zeros if no record yet
     if not impact:
         impact = {
             'carbon_saved': 0,
@@ -233,8 +231,6 @@ def impact_enhanced():
             'actions_completed': 0
         }
 
-    # Pass data to your existing impact.html or inject form for data submission here
-    # Example: Inject impact stats and form below existing impact.html content
     base_content = render_template('impact.html')
     form_html = f'''
     <h3>Your Impact Stats</h3>
