@@ -54,7 +54,7 @@
   .navbar .nav-links li a:hover {
     color: #a4ff9f;
   }
-  /* Blog Section */
+
 #blog-section {
   padding: 60px 0;
 }
@@ -93,7 +93,7 @@
   display: block;
   margin-top: 10px;
 }
-/* Blog list cards */
+
 .list-group-item {
   transition: background-color 0.2s ease;
 }

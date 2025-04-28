@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>G-Root</title>
+  <title>Phytoscan</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../static/styles/about.css" />
   <script src="../static/scripts/script.js"></script>
@@ -15,13 +15,7 @@
       <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="{{ url_for('education') }}">Education Hub</a></li>
       <li class="nav-item"><a class="nav-link" href="{{ url_for('scan') }}">Scan</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('impact') }}">Impact</a></li>
       <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About us</a></li>
-      {% if 'username' in session %}
-            <li class="nav-item"><a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a></li>
-        {% else %}
-            <li class="nav-item"><a href="{{ url_for('login') }}" class="btn btn-success">Login</a></li>
-        {% endif %}
     </ul>
   </nav>
   <section class="who-we-are">
