@@ -1,0 +1,27 @@
+{% extends "base.html" %}  <!-- Your main base layout -->
+
+{% block title %}Education Blogs - G-Root{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+  <h2>Education Blogs</h2>
+  <a href="{{ url_for('new_blog') }}" class="btn btn-primary mb-3">Add New Blog Post</a>
+
+  {% if blogs %}
+    <div class="list-group">
+      {% for blog in blogs %}
+        <a href="{{ url_for('blog_post', blog_id=blog.id) }}" class="list-group-item list-group-item-action flex-column align-items-start mb-2">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ blog.title }}</h5>
+            <small>{{ blog.created_at.strftime('%b %d, %Y') }}</small>
+          </div>
+          <p class="mb-1 text-truncate" style="max-width: 500px;">{{ blog.content|safe|striptags|truncate(150) }}</p>
+          <small>By {{ blog.author }}</small>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No blog posts available yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -10,14 +10,42 @@ window.onload = function() {
 };
 
 function showLoginPage() {
-  // Redirect to the login page
   window.location.href = "/login";
 }
 
 function logout() {
-  // Clear the local storage and reset the logged-in state
   localStorage.removeItem('loggedIn');
   localStorage.removeItem('userEmail');
   alert("You have been logged out.");
   window.location.reload();
 }
+<script>
+function toggleChat() {
+    const chat = document.getElementById("chat-window");
+    chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+}
+
+async function sendMessage() {
+    const input = document.getElementById("user-input");
+    const message = input.value;
+    if (!message.trim()) return;
+
+    const chatBox = document.getElementById("chat-messages");
+    chatBox.innerHTML += `<div><strong>You:</strong> ${message}</div>`;
+    input.value = "";
+
+    const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ message })
+    });
+
+    const data = await res.json();
+    if (data.reply) {
+        chatBox.innerHTML += `<div><strong>G-Root Bot:</strong> ${data.reply}</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+    } else {
+        chatBox.innerHTML += `<div><strong>Bot:</strong> Sorry, something went wrong.</div>`;
+    }
+}
+</script>

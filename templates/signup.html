@@ -18,7 +18,11 @@
       <li class="nav-item"><a class="nav-link" href="{{ url_for('rewards') }}">Rewards</a></li>
       <li class="nav-item"><a class="nav-link" href="{{ url_for('report') }}">Report</a></li>
       <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About us</a></li>
-      <a href="{{ url_for('login') }}" class="btn btn-success">Login</a>
+      {% if 'username' in session %}
+            <li class="nav-item"><a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a></li>
+        {% else %}
+            <li class="nav-item"><a href="{{ url_for('login') }}" class="btn btn-success">Login</a></li>
+        {% endif %}
     </ul>
   </nav>
   

@@ -14,12 +14,14 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="{{ url_for('education') }}">Education Hub</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('action') }}">Take Action</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('impact') }}">Track Impact</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('rewards') }}">Rewards</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('report') }}">Report</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('scan') }}">Scan</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('impact') }}">Impact</a></li>
       <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About us</a></li>
-      <a href="{{ url_for('login') }}" class="btn btn-success">Login</a>
+      {% if 'username' in session %}
+            <li class="nav-item"><a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a></li>
+        {% else %}
+            <li class="nav-item"><a href="{{ url_for('login') }}" class="btn btn-success">Login</a></li>
+        {% endif %}
     </ul>
   </nav>
   <section class="who-we-are">
@@ -27,8 +29,17 @@
       <div class="who-text" data-aos="fade-right">
         <h2>Who are we</h2>
         <p>
-          We’re here to make doing good feel real, reachable, and personal. At G-Root, we believe tech should care – not just calculate. So we build with heart, guided by the SDGs, to spark change in the everyday. Because the future isn’t waiting – it’s shaped by the choices we make today. And yes, <strong>it starts with you.</strong>
-        </p>
+          We are a team of passionate students who believe that technology can make plant care simpler for everyone.
+
+          Driven by our love for agriculture and innovation, we built Phytoscan to help farmers, gardeners, and plant enthusiasts easily identify plant diseases and protect their crops — without needing complicated tools or technical knowledge.
+
+          Our goal is simple:
+          To connect practical knowledge and modern technology, and make plant health advice accessible to all.
+
+          Through easy-to-follow guides, early detection tools, and community support, we want to empower people everywhere to grow healthier, stronger plants — and protect the food and green spaces that sustain us all.
+
+          This is just the beginning — and we're excited to grow with you! 🌱
+          </p>
       </div>
     <img src="../static/images/about (3).jpeg" alt="Illustration" class="section-image"/>
     </div>
@@ -41,13 +52,27 @@
       <img src="../static/images/about (2).jpeg" alt="Recycling" class="section-image"/>
       <div class="mission-block stretch-right" data-aos="fade-up">
         <div class="text green-box right-stretch">
-        <p>We want to see the world change — not just in headlines, but in hearts, homes, and everyday lives. Our mission is to give you a starting point, a spark, and a system that helps you turn hope into something real.</p>
+        <p>
+          Our mission is to make plant health knowledge simple, accessible, and actionable for everyone.
+
+          We are committed to supporting farmers, gardeners, and plant lovers by
+
+          Spreading easy-to-understand information on plant care and disease prevention
+
+          Providing simple tools to help detect plant problems early
+
+          Encouraging sustainable, healthy growing practices for a better future
+        </p>
       </div>
     </div>
     <div class="mission-block stretch-left" data-aos="fade-up" data-aos-delay="200"></div>
     <div class="mission-block reverse">
       <div data-aos="fade-up" class="text green-box left-stretch">
-        <p >Every small action you take echoes further than you think. And as you show up, day by day, you’re not just part of the change. You are the change.</p>
+        <p>
+          We believe that empowering people with the right knowledge — at the right time — can protect crops, improve livelihoods, and strengthen food security for communities everywhere.
+
+          Through technology, learning, and collaboration, we aim to create a world where healthy plants and healthy harvests are within everyone's reach. 🌱
+        </p>
       </div>
       <img src="../static/images/about (1).jpeg" alt="Clean up" class="section-image"/>
     </div>

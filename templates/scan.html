@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scan - Phytoscan</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../static/styles/styles.css" />
+  <script src="../static/scripts/script.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
+    <div>Phytoscan</div>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('education') }}">Education Hub</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('scan') }}">Scan</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('impact') }}">Impact</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About us</a></li>
+      {% if 'username' in session %}
+        <li class="nav-item"><a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a></li>
+      {% else %}
+        <li class="nav-item"><a href="{{ url_for('login') }}" class="btn btn-success">Login</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h1>Scan Your Plants</h1>
+    <p>Identify plant diseases with just a photo.</p>
+  </section>
+
+  <section class="upload-container">
+    <h2>Upload Image for Analysis</h2>
+    <form id="upload-form" action="/predict" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <input type="file" id="plant-image" name="plant-image" accept="image/*" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-success">Scan</button>
+    </form>
+  </section>
+
+  {% if label %}
+  <section class="result-container">
+    <h1>Prediction Result</h1>
+    <h2>Predicted Class: {{ label }}</h2>
+    <img src="{{ img_path }}" width="300">
+    <br><br>
+    <a href="/">Predict Another</a>
+  </section>
+  {% endif %}
+
+  <section class="results-container">
+    <h2>Scan Results</h2>
+    <div id="results" class="results-box">
+      <p>No results yet. Upload an image to start scanning.</p>
+    </div>
+  </section>
+
+  <footer class="footer mt-auto py-3">
+    <div class="container text-center">
+      <p class="footer-text mb-1">© 2025 Phytoscan. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="about.html">About</a> |
+        <a href="contact.html">Contact</a> |
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('upload-form').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const formData = new FormData();
+      const imageInput = document.getElementById('plant-image');
+
+      formData.append('plant-image', imageInput.files[0]);
+
+      try {
+        const response = await fetch('/scan', {
+          method: 'POST',
+          body: formData
+        });
+
+        const resultData = await response.json();
+        const resultsBox = document.getElementById('results');
+        resultsBox.innerHTML = `<p><strong>Detected Disease:</strong> ${resultData.disease}</p>
+                                <p><strong>Confidence Level:</strong> ${resultData.confidence}%</p>`;
+      } catch (error) {
+        console.error('Error during scanning:', error);
+        const resultsBox = document.getElementById('results');
+        resultsBox.innerHTML = `<p style="color:red;">Error: Could not retrieve results.</p>`;
+      }
+    });
+  </script>
+</body>
+</html>

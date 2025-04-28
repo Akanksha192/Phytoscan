@@ -3,42 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>G-Root</title>
+  <title>Phytoscan</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../static/styles/styles.css" />
   <script src="../static/scripts/script.js"></script>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
-    <div>G-Root</div>
+    <div>Phytoscan</div>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="{{ url_for('education') }}">Education Hub</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('action') }}">Take Action</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('impact') }}">Track Impact</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('rewards') }}">Rewards</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('report') }}">Report</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('scan') }}">Scan</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('impact') }}">Impact</a></li>
       <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About us</a></li>
-      <a href="{{ url_for('login') }}" class="btn btn-success">Login</a>
+      {% if 'username' in session %}
+            <li class="nav-item"><a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a></li>
+        {% else %}
+            <li class="nav-item"><a href="{{ url_for('login') }}" class="btn btn-success">Login</a></li>
+        {% endif %}
     </ul>
   </nav>
+  
   <section class="hero">
-    <h1>G-Root</h1>
-    <p>It starts with you</p>
+    <h1>Phytoscan</h1>
+    <p>Your Farm's First Line of Defense.</p>
     <div class="tagline">
-      We connect people to the Sustainable Development Goals through engaging tools, regional stories, and real-life actions.<br/>
-      Because change begins with you.
+      We help farmers, gardeners, and researchers detect plant diseases easily using AI. Upload a photo, get instant results, and protect your crops — all in one place.
     </div>
   </section>
 
   <section class="why">
-    <h2>Why G-Root?</h2>
+    <h2>Why Phytoscan?</h2>
     <div class="why-content">
       <div class="sdg-text">
-        <p>The Sustainable Development Goals (SDGs) are 17 global goals adopted by all United Nations member states in 2015 as part of the 2030 Agenda for Sustainable Development.</p>
-        <a href="#">Learn more about SDGs</a>
+        <p>With the rise in global food demand and climate change challenges, farmers are facing increasing pressure to protect their crops from diseases. Phytoscan leverages advanced deep learning techniques, particularly CNN, to accurately detect plant diseases from images. This provides timely solutions that enhance agricultural productivity and contribute to food security.</p>
+        <a href="#">Learn more about our approach</a>
       </div>
-      <img src="../static/images/sdgs.jpg" alt="SDGs" class="sdg-image">
+      <img src="../static/images/plant-disease.jpg" alt="Plant Disease Detection" class="sdg-image">
     </div>
   </section>
 
@@ -51,15 +53,49 @@
   <section class="cta">
     <h2>JOIN THE MOVEMENT. <br/> TODAY.</h2>
   </section>
+  
   <footer class="footer mt-auto py-3">
     <div class="container text-center">
-      <p class="footer-text mb-1">© 2025 G-Root. All rights reserved.</p>
+      <p class="footer-text mb-1">© 2025 Phytoscan. All rights reserved.</p>
       <div class="footer-links">
         <a href="about.html">About</a> |
         <a href="contact.html">Contact</a> |
         <a href="privacy.html">Privacy Policy</a>
       </div>
     </div>
-  </footer>  
+  </footer>
+
+  <script>
+    function toggleChat() {
+      const chatbot = document.getElementById("chatbot-window");
+      chatbot.style.display = chatbot.style.display === "none" ? "flex" : "none";
+    }
+  
+    document.getElementById("chatbot-toggle").addEventListener("click", toggleChat);
+    async function sendMessage(event) {
+      event.preventDefault();
+      const input = document.getElementById("chatbot-input");
+      const message = input.value.trim();
+      if (!message) return;
+  
+      const messagesDiv = document.getElementById("chatbot-messages");
+      messagesDiv.innerHTML += `<div><strong>You:</strong> ${message}</div>`;
+      input.value = "";
+
+      try {
+        const res = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: message }),
+        });
+
+        const data = await res.json();
+        messagesDiv.innerHTML += `<div><strong>G-Root AI:</strong> ${data.reply}</div>`;
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      } catch (err) {
+        messagesDiv.innerHTML += `<div style="color:red;"><strong>Error:</strong> Could not get a response.</div>`;
+      }
+    }
+  </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Education Hub | G-Root</title>
+  <title>Education Hub | Phytoscan</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../static/styles/education.css" />
   <style>
@@ -183,17 +183,19 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="{{ url_for('education') }}">Education Hub</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('action') }}">Take Action</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('impact') }}">Track Impact</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('rewards') }}">Rewards</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('report') }}">Report</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('scan') }}">Scan</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ url_for('impact') }}">Impact</a></li>
       <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About us</a></li>
-      <a href="{{ url_for('login') }}" class="btn btn-success">Login</a>
+      {% if 'username' in session %}
+            <li class="nav-item"><a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a></li>
+        {% else %}
+            <li class="nav-item"><a href="{{ url_for('login') }}" class="btn btn-success">Login</a></li>
+        {% endif %}
     </ul>
   </nav>
   <header class="page-header">
     <h1>Education Hub</h1>
-    <p>Explore our resources to learn more about sustainability and the SDGs.</p>
+    <p>Explore our resources to learn more about your plant health.</p>
   </header>
 
   <main>
@@ -208,47 +210,47 @@
     document.addEventListener("DOMContentLoaded", () => {
       const resources = [
         {
-          title: "Understanding the SDGs",
-          description: "A comprehensive guide to the 17 Sustainable Development Goals",
+          title: "Essential Guide to Plant Health",
+          description: "Understand the basics of watering, sunlight exposure, soil pH balance, and crucial nutrients for thriving plants.",
           category: "Guide",
           time: "10 min read",
-          link: "https://www.undp.org/sustainable-development-goals"
+          link: "https://www.christiansonsnursery.com/plant-care-basics/"
         },
         {
-          title: "Climate Action Basics",
-          description: "Learn the fundamentals of climate change and what you can do",
-          category: "Tutorial",
+          title: "Preventative Measures for Healthy Gardens",
+          description: "Discover best practices like crop rotation, proper plant spacing, tool sanitation, and pest management to prevent diseases.",
+          category: "Tips",
           time: "15 min read",
-          link: "https://climate.nasa.gov/"
+          link: "https://extension.uga.edu/publications/detail.html?number=C862&title=disease-management-in-the-home-vegetable-garden"
         },
         {
-          title: "Sustainable Business Practices",
-          description: "How businesses can contribute to a sustainable future",
+          title: "Water Conservation Techniques for Growers",
+          description: "Discover practical ways farmers and gardeners conserve water, from drip irrigation to soil health practices.",
           category: "Guide",
           time: "12 min read",
-          link: "https://www.un.org/sustainabledevelopment/sustainable-consumption-production/"
+          link: "https://foodwise.org/articles/10-ways-farmers-are-saving-water/"
         },
         {
-          title: "Sustainable Development Goal 17",
-          description: "Deep dive into partnerships for the goals",
-          category: "Deep Dive",
-          time: "20 min read",
-          link: "https://sdgs.un.org/goals/goal17"
-        },
-        {
-          title: "Carbon Footprint Calculation",
-          description: "Learn how to measure and reduce your carbon footprint",
-          category: "Tutorial",
-          time: "8 min read",
-          link: "https://www.carbonfootprint.com/calculator.aspx"
-        },
-        {
-          title: "Water Conservation Techniques",
-          description: "Simple ways to save water at home and work",
+          title: "Identifying Common Plant Disease",
+          description: "Learn to spot the signs of frequent diseases like blight, rust, mildew, and viral infections affecting various plants.",
           category: "Guide",
-          time: "5 min read",
-          link: "https://www.epa.gov/watersense/start-saving"
-        }
+          time: "12 min read",
+          link: "https://www.britannica.com/topic/list-of-plant-diseases-2033263" 
+        },
+        {
+      title: "Protecting Crops Naturally",
+      description: "Learn natural ways to boost plant immunity and prevent diseases without relying heavily on chemical treatments.",
+      category: "Tips",
+      time: "9 min read",
+      link: "https://shegrowsveg.com/hub/how-to-protect-crops-without-chemicals/?srsltid=AfmBOooWQQPxWtAlWGotdawS1tnYCMuJh4BEDyldxdrNYsD1mT_umMWb"
+    },
+    {
+      title: "Common Mistakes That Lead to Plant Disease",
+      description: "Understand common planting and care mistakes that make plants more vulnerable to pests and infections.",
+      category: "Tips",
+      time: "7 min read",
+      link: "https://nurserykart.in/blogs/gardening/the-most-common-gardening-mistakes-and-how-to-avoid-them#:~:text=Planting%20at%20the%20wrong%20time%20can%20lead%20to%20poor%20growth,plants%20to%20unfavorable%20weather%20conditions."
+    }
       ];
   
       const container = document.getElementById('resourceGrid');
@@ -287,5 +289,92 @@
       });
     });
   </script>
+
+<section class="pinterest-blog-section">
+  <div class="background-animation"></div>
+  <h2><i class="fas fa-seedling"></i> Community Blog Feed</h2>
+  <div class="blog-grid">
+
+    <div class="blog-card">
+      <div class="blog-header">
+        <span class="user">🌱 EcoExplorer</span>
+        <span class="time">2h ago</span>
+      </div>
+      <p>Just planted 20 trees with my local community! 🌳 #ClimateAction</p>
+      <img src="../static/images/abc (3).jpeg" alt="Blog Image 1">
+      <div class="actions">
+        <button onclick="likePost(this)">❤️ Like(<span>0</span>)</button>
+        <button onclick="toggleCommentBox(this)">💬 Comment</button>
+        <button>🔗 Share</button>
+      </div>
+      <div class="comment-box" style="display: none;">
+        <input type="text" placeholder="Write a comment..." onkeypress="submitComment(event, this)">
+      </div>
+      <div class="comments"></div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-header">
+        <span class="user">🌿 GreenThumb</span>
+        <span class="time">4h ago</span>
+      </div>
+      <p>Built a recycled greenhouse with my team 💡💚</p>
+      <img src="../static/images/abc (2).jpeg" alt="Blog Image 2">
+      <div class="actions">
+        <button onclick="likePost(this)">❤️ Like(<span>0</span>)</button>
+        <button onclick="toggleCommentBox(this)">💬 Comment</button>
+        <button>🔗 Share</button>
+      </div>
+      <div class="comment-box" style="display: none;">
+        <input type="text" placeholder="Write a comment..." onkeypress="submitComment(event, this)">
+      </div>
+      <div class="comments"></div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-header">
+        <span class="user">🌾 NatureNerd</span>
+        <span class="time">1d ago</span>
+      </div>
+      <p>Attended a sustainable farming workshop 🍀🥬</p>
+      <img src="../static/images/abc (1).jpeg" alt="Blog Image 3">
+      <div class="actions">
+        <button onclick="likePost(this)">❤️ Like(<span>0</span>)</button>
+        <button onclick="toggleCommentBox(this)">💬 Comment</button>
+        <button>🔗 Share</button>
+      </div>
+      <div class="comment-box" style="display: none;">
+        <input type="text" placeholder="Write a comment..." onkeypress="submitComment(event, this)">
+      </div>
+      <div class="comments"></div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function likePost(btn) {
+    const countSpan = btn.querySelector('span');
+    let count = parseInt(countSpan.textContent);
+    countSpan.textContent = isNaN(count) ? 1 : count + 1;
+  }
+
+  function toggleCommentBox(btn) {
+    const card = btn.closest('.blog-card');
+    const box = card.querySelector('.comment-box');
+    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+  }
+
+  function submitComment(event, input) {
+    if (event.key === 'Enter' && input.value.trim() !== '') {
+      const card = input.closest('.blog-card');
+      const commentsDiv = card.querySelector('.comments');
+      const newComment = document.createElement('p');
+      newComment.textContent = input.value;
+      commentsDiv.appendChild(newComment);
+      input.value = '';
+    }
+  }
+</script>
 </body>
 </html>

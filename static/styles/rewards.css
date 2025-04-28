@@ -32,5 +32,58 @@
   .custom-navbar .nav-link {
     color: white !important;
   }
+  .leaderboard-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 1rem;
+    color: #333;
+}
 
-  
+.leaderboard-table thead {
+    background-color: #f2f7f3;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #144d29;
+}
+
+.leaderboard-table th, .leaderboard-table td {
+    padding: 18px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.leaderboard-table tbody tr:nth-child(odd) {
+    background-color: #fafafa;
+}
+
+.leaderboard-table tbody tr:hover {
+    background-color: #e9f7ed;
+    transition: background 0.3s ease;
+}
+
+.rank-badge {
+    background-color: #ffc107;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.9rem;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.leaderboard-table tbody tr:nth-child(1) .rank-badge {
+    background-color: #ffd700; /* Gold */
+}
+
+.leaderboard-table tbody tr:nth-child(2) .rank-badge {
+    background-color: #c0c0c0; /* Silver */
+}
+
+.leaderboard-table tbody tr:nth-child(3) .rank-badge {
+    background-color: #cd7f32; /* Bronze */
+}

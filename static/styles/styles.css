@@ -86,7 +86,7 @@ body {
   color: white;
   padding: 1.5em;
   border-radius: 8px;
-  max-width: 300px;
+  max-width: 600px;
 }
 
 .sdg-image {
@@ -141,6 +141,7 @@ body {
 .cta-buttons button:hover {
   background-color: #3b7c4d;
 }
+
 .footer {
   background-color: #144d29;
   padding: 20px 0;
@@ -165,4 +166,52 @@ body {
 
 .footer-links a:hover {
   text-decoration: underline;
+}
+
+#chat-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#chat-window {
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  border: 2px solid #144d29;
+  border-radius: 10px;
+  width: 300px;
+  height: 400px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+#chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+#user-input {
+  width: 70%;
+  padding: 8px;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+#chat-window button {
+  width: 30%;
+  border: none;
+  background-color: #144d29;
+  color: white;
+}
+
+#toggle-chat {
+  background-color: #144d29;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50px;
+  cursor: pointer;
 }

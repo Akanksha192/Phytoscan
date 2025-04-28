@@ -1,16 +1,14 @@
-# Root
+# Phytoscan
 
-# 🌍 Root — Tech-Driven Action for SDG 12 & Climate Impact
+# 🌍 Phytoscan — Your Farm's first line of defenses
 
-**Root** is a unified platform that empowers individuals, communities, and organizations to take real climate action — with a specific focus on **Sustainable Development Goal 12: Responsible Consumption & Production**.
-
-We believe **everyone is an environmentalist**, and with the right tools, small actions can create big change.
+**Phytoscan** is an innovative platform designed to help farmers, gardeners, and plant enthusiasts identify plant diseases and improve plant health. By combining practical plant care knowledge with technology, our platform provides simple tools, guides, and resources to detect plant issues and support sustainable farming practices.
 
 ---
 
 ## 🎯 Mission
 
-To create a digital movement that drives **conscious choices**, **climate literacy**, and **data-powered sustainability** by making climate action simple, social, and scalable.
+Our mission is to make plant health knowledge simple, accessible, and actionable for everyone. We aim to empower farmers, gardeners, and plant lovers by providing the tools and information they need to protect crops and grow healthy plants.
 
 ---
 
@@ -18,19 +16,15 @@ To create a digital movement that drives **conscious choices**, **climate litera
 
 | Feature | Description |
 |--------|-------------|
-| 🧠 **Smart Suggestions** | AI-driven tips based on your daily habits and lifestyle |
-| 📊 **Personal Carbon Tracker** | Understand your carbon impact and reduce it over time |
-| 📚 **Info & Research** | SDG-based explainers, solutions, and verified knowledge |
-| 🌱 **Green Choices Hub** | Learn to buy better, waste less, and upcycle smarter |
-| 🌐 **Influencer Connect** | Collaborate with climate leaders and grassroots orgs |
-
+| 🧠 **Plant Disease Detection** | AI-driven tips based on your daily habits and lifestyle |
+| 🌱 **Plant Health Guides** | Understand your carbon impact and reduce it over time |
 ---
 
-## 💡 Why SDG 12?
+## 💡 Why Phytoscan?
 
-> “You can’t manage what you can’t measure.”
+> In today’s world, early disease detection and plant health management are crucial for ensuring healthy crops and thriving gardens. However, many farmers, especially those in remote areas or with limited access to resources, face challenges in diagnosing and addressing plant health issues quickly and effectively.
 
-SDG 12 is a gateway to solving major global issues like climate change, food waste, and overconsumption. **Root** provides a simple and tech-friendly way for people to *measure*, *learn*, and *act*.
+This is where PhytoScan comes in. Our platform is designed to bridge the gap between advanced technology and everyday plant care. Whether you're a farmer, a hobbyist gardener, or simply someone who loves plants, PhytoScan offers an easy-to-use, accessible tool to monitor and protect your plants.
 
 ---
 
@@ -38,10 +32,8 @@ SDG 12 is a gateway to solving major global issues like climate change, food was
 
 | Layer       | Tech Used                |
 |-------------|--------------------------|
-| Frontend    | React.js / HTML / Tailwind CSS |
-| Backend     | Node.js + Express or Flask |
+| Frontend    | HTML / CSS /JavaScript |
+| Backend     | Flask |
 | ML / AI     | Python (Scikit-learn / Pandas) |
-| Hosting     | Netlify / Vercel / GitHub Pages |
-| Database    | Firebase / MongoDB (optional) |
-
+| Database    | MySQL|
 ---
