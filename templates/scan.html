@@ -42,7 +42,8 @@
     <br><br>
     <a href="/">Predict Another</a>
   </section>
-  {% endif %}
+{% endif %}
+
 
   <section class="results-container">
     <h2>Scan Results</h2>
@@ -55,37 +56,37 @@
     <div class="container text-center">
       <p class="footer-text mb-1">© 2025 Phytoscan. All rights reserved.</p>
       <div class="footer-links">
-        <a href="about.html">About</a> |
-        <a href="contact.html">Contact</a> |
-        <a href="privacy.html">Privacy Policy</a>
+        <a href="/templates/about.html">About</a> |
+        <a href="/templates/contact.html">Contact</a> |
+        <a href="/templates/privacy.html">Privacy Policy</a>
       </div>
     </div>
   </footer>
 
   <script>
     document.getElementById('upload-form').addEventListener('submit', async function(event) {
-      event.preventDefault();
-      const formData = new FormData();
-      const imageInput = document.getElementById('plant-image');
+  event.preventDefault();
+  const formData = new FormData();
+  const imageInput = document.getElementById('plant-image');
 
-      formData.append('plant-image', imageInput.files[0]);
+  formData.append('file', imageInput.files[0]);  // Note the key 'file' should match what is being used in Flask route.
 
-      try {
-        const response = await fetch('/scan', {
-          method: 'POST',
-          body: formData
-        });
-
-        const resultData = await response.json();
-        const resultsBox = document.getElementById('results');
-        resultsBox.innerHTML = `<p><strong>Detected Disease:</strong> ${resultData.disease}</p>
-                                <p><strong>Confidence Level:</strong> ${resultData.confidence}%</p>`;
-      } catch (error) {
-        console.error('Error during scanning:', error);
-        const resultsBox = document.getElementById('results');
-        resultsBox.innerHTML = `<p style="color:red;">Error: Could not retrieve results.</p>`;
-      }
+  try {
+    const response = await fetch('/predict', {  // Send the data to the /predict route
+      method: 'POST',
+      body: formData
     });
+
+    const resultData = await response.json();  // Assuming your Flask view returns a JSON response
+    const resultsBox = document.getElementById('results');
+    resultsBox.innerHTML = `<p><strong>Detected Disease:</strong> ${resultData.disease}</p>
+                            <p><strong>Confidence Level:</strong> ${resultData.confidence}%</p>`;
+  } catch (error) {
+    console.error('Error during scanning:', error);
+    const resultsBox = document.getElementById('results');
+    resultsBox.innerHTML = `<p style="color:red;">Error: Could not retrieve results.</p>`;
+  }
+});
   </script>
 </body>
 </html>
